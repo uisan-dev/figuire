@@ -14,8 +14,6 @@ type Store struct {
 	db *gorm.DB
 }
 
-var FiguireStore, _ = NewStore("figuire.db")
-
 func NewStore(path string) (*Store, error) {
 	dsn := path + "?_pragma=journal_mode(WAL)&_pragma=busy_timeout(5000)"
 
@@ -138,6 +136,6 @@ func (s *Store) ProductByCode(site, code string) (*Product, error) {
 
 func (s *Store) History(productID uint) ([]PriceEvent, error) {
 	var events []PriceEvent
-	err := s.db.Where("product_id = ?").Order("observed_at asc").Find(&events).Error
+	err := s.db.Where("product_id = ?", productID).Order("observed_at asc").Find(&events).Error
 	return events, err
 }

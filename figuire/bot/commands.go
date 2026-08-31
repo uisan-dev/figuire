@@ -6,16 +6,14 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-var handlers map[string]figuire.Handler = map[string]figuire.Handler{
-	"ping":  FiguireBot.HandlePing,
-	"watch": FiguireBot.HandleWatch,
+func (b *Bot) GetHandlers() map[string]figuire.Handler {
+	return map[string]figuire.Handler{
+		"ping":  b.HandlePing,
+		"watch": b.HandleWatch,
+	}
 }
 
-func GetHandlers() map[string]figuire.Handler {
-	return handlers
-}
-
-func GetCommands() []*discordgo.ApplicationCommand {
+func (b *Bot) GetCommands() []*discordgo.ApplicationCommand {
 	commands := make([]*discordgo.ApplicationCommand, 0)
 	commands = append(commands, StatusCommands...)
 	commands = append(commands, WatchCommands...)

@@ -41,7 +41,7 @@ func (b *Bot) HandleWatch(s *discordgo.Session, i *discordgo.InteractionCreate) 
 		return
 	}
 
-	item, err := FiguireBot.Client.FetchItem(code)
+	item, err := b.Client.FetchItem(code)
 	if err != nil {
 		msg := "Something went wrong reaching AmiAmi. Try again in a moment"
 		if errors.Is(err, amiami.ErrItemNotFound) {

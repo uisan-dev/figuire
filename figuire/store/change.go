@@ -13,7 +13,7 @@ type Change struct {
 }
 
 func (c *Change) PriceChanged() bool {
-	return c.OldPriceJPY != c.NewPriceJPY
+	return !c.IsNew && c.OldPriceJPY != c.NewPriceJPY
 }
 
 func (c *Change) AvailabilityChanged() bool {

@@ -1,7 +1,9 @@
 package main
 
 import (
+	"figuire/figuire/amiami"
 	"figuire/figuire/bot"
+	"figuire/figuire/store"
 	"log"
 	"os"
 	"os/signal"
@@ -14,8 +16,18 @@ import (
 func main() {
 	godotenv.Load()
 
-	cmds := bot.GetCommands()
-	handlers := bot.GetHandlers()
+	st, err := store.NewStore("figuire.db")
+	if err != nil {
+		log.Fatalf("opening store: %v", err)
+	}
+
+	fb := &bot.Bot{
+		Client: amiami.NewClient(),
+		Store:  st,
+	}
+
+	cmds := fb.GetCommands()
+	handlers := fb.GetHandlers()
 
 	token := os.Getenv("DISCORD_TOKEN")
 	appID := os.Getenv("DISCORD_APP_ID")

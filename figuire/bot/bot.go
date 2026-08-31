@@ -9,8 +9,3 @@ type Bot struct {
 	Client *amiami.Client
 	Store  *store.Store
 }
-
-var FiguireBot *Bot = &Bot{
-	Client: amiami.NewClient(),
-	Store:  store.FiguireStore,
-}
