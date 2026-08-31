@@ -1,7 +1,7 @@
 package main
 
 import (
-	"figurebot/figuire/commands"
+	"figuire/figuire/bot"
 	"log"
 	"os"
 	"os/signal"
@@ -14,8 +14,8 @@ import (
 func main() {
 	godotenv.Load()
 
-	cmds := commands.GetCommands()
-	handlers := commands.GetHandlers()
+	cmds := bot.GetCommands()
+	handlers := bot.GetHandlers()
 
 	token := os.Getenv("DISCORD_TOKEN")
 	appID := os.Getenv("DISCORD_APP_ID")
@@ -54,11 +54,11 @@ func main() {
 	}
 	defer session.Close()
 
-	registered := make([]*discordgo.ApplicationCommand, 0, len(commands.StatusCommands))
+	registered := make([]*discordgo.ApplicationCommand, 0, len(cmds))
 	for _, cmd := range cmds {
 		rc, err := session.ApplicationCommandCreate(appID, guildID, cmd)
 		if err != nil {
-			log.Fatalf("registering %s: %v", cmd, err)
+			log.Fatalf("registering %s: %v", cmd.Name, err)
 		}
 		log.Printf("Registered %s", rc.Name)
 		registered = append(registered, rc)

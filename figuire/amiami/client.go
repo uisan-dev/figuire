@@ -3,7 +3,7 @@ package amiami
 import (
 	"encoding/json"
 	"errors"
-	"figurebot/figuire/merch"
+	"figuire/figuire/merch"
 	"fmt"
 	"io"
 	"log"

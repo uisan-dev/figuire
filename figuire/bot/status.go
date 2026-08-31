@@ -1,4 +1,4 @@
-package commands
+package bot
 
 import (
 	"log"
@@ -13,7 +13,7 @@ var StatusCommands = []*discordgo.ApplicationCommand{
 	},
 }
 
-func HandlePing(s *discordgo.Session, i *discordgo.InteractionCreate) {
+func (b *Bot) HandlePing(s *discordgo.Session, i *discordgo.InteractionCreate) {
 	err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{

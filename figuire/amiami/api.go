@@ -1,7 +1,7 @@
 package amiami
 
 import (
-	"figurebot/figuire/merch"
+	"figuire/figuire/merch"
 	"time"
 )
 

@@ -1,14 +1,14 @@
-package commands
+package bot
 
 import (
-	"figurebot/figuire"
+	"figuire/figuire"
 
 	"github.com/bwmarrin/discordgo"
 )
 
 var handlers map[string]figuire.Handler = map[string]figuire.Handler{
-	"ping":  HandlePing,
-	"watch": HandleWatch,
+	"ping":  FiguireBot.HandlePing,
+	"watch": FiguireBot.HandleWatch,
 }
 
 func GetHandlers() map[string]figuire.Handler {
