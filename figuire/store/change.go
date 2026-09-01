@@ -17,7 +17,7 @@ func (c *Change) PriceChanged() bool {
 }
 
 func (c *Change) AvailabilityChanged() bool {
-	return c.OldAvailability != c.NewAvailability
+	return !c.IsNew && c.OldAvailability != c.NewAvailability
 }
 
 func (c *Change) BecameAvailable() bool {

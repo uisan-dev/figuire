@@ -25,7 +25,7 @@ func NewStore(path string) (*Store, error) {
 		return nil, err
 	}
 
-	if err := db.AutoMigrate(&Product{}, Watch{}, &PriceEvent{}); err != nil {
+	if err := db.AutoMigrate(&Product{}, &Watch{}, &PriceEvent{}); err != nil {
 		return nil, err
 	}
 
@@ -113,7 +113,7 @@ func (s *Store) WatchedProducts() ([]Product, error) {
 	return products, err
 }
 
-func (s *Store) WatchesFor(productID string) ([]Watch, error) {
+func (s *Store) WatchesFor(productID uint) ([]Watch, error) {
 	var watches []Watch
 	err := s.db.Where("product_id = ?", productID).Find(&watches).Error
 	return watches, err
